@@ -50,22 +50,26 @@ final class AuthTest extends TestCase
         ]);
 
         $a = new Auth();
-        $this->assertNotEmpty($a);
+        $this->assertInstanceOf(Auth::class, $a);
 
         $_SESSION['user'] = $user->id;
 
         $this->assertNotEmpty($a->user());
+
+        $this->assertInstanceOf(User::class, $a->user());
     }
 
     public function testCheck_UserIsLoggedIn()
     {
         $a = new Auth();
+        $this->assertInstanceOf(Auth::class, $a);
         $this->assertTrue($a->check());
     }
 
     public function testAttemptLoginFails()
     {
         $a = new Auth();
+        $this->assertInstanceOf(Auth::class, $a);
         $this->assertFalse($a->attempt('emailaddressiswrong', 'test'));
         $this->assertFalse($a->attempt('test@test.test', 'passwordiswrong'));
         $this->assertFalse($a->attempt('emailaddressiswrong', 'passwordiswrong'));
@@ -75,8 +79,11 @@ final class AuthTest extends TestCase
     public function testLoginLogOut()
     {
         $a = new Auth();
+        $this->assertInstanceOf(Auth::class, $a);
+
         /* login */
-        $a->attempt('test@test.test', 'test');
+        $this->assertTrue($a->attempt('test@test.test', 'test'));
+
         $this->assertTrue($a->check());
 
         $a->logout();
