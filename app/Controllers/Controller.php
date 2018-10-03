@@ -9,14 +9,14 @@ namespace App\Controllers;
 
 class Controller
 {
-
+    
     /**
      * The container (associative array)
      *
      * @var Array
      */
     protected $container;
-
+    
     /**
      * Create a new controller
      *
@@ -27,7 +27,7 @@ class Controller
         /* Store the $container, which is added by dependency injection, in a field */
         $this->container = $container;
     }
-
+    
     /**
      * Attempt to get the property from the container
      *
