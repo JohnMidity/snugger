@@ -86,6 +86,12 @@ $container['view'] = function ($container) {
     // let the view have access to flash messages
     $view->getEnvironment()->addGlobal('flash', $container->flash);
 
+    // Add a filter
+    $filter = new \Twig_Filter('cast_to_array', function (Object $object) {
+        return (array) $object;
+    });
+    $view->getEnvironment()->addFilter($filter);
+
     return $view;
 };
 
